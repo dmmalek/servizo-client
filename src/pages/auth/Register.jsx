@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import signUpImage from "../../assets/sign_up.json";
 import Lottie from "lottie-react";
 import useAuth from "../../hooks/useAuth";
+import toast from "react-hot-toast";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -19,8 +20,8 @@ const Register = () => {
       console.log("user created", userCrendential.user);
       await updateProfileUser(name, photo);
       setUser({ ...user, displayName: name, photoUrl: photo });
+      toast.success("User Created succesfully");
       navigate("/");
-      alert("user created");
     } catch (error) {
       console.log(error);
     }

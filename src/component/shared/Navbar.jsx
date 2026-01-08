@@ -1,7 +1,20 @@
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import logo from "../../assets/logo.png";
+import useAuth from "../../hooks/useAuth";
+import toast from "react-hot-toast";
 
 const Navbar = () => {
+  const { logOut } = useAuth();
+  const navigate = useNavigate();
+  const handleLogOut = async () => {
+    try {
+      await logOut();
+      toast.success("log out success");
+      navigate("/login");
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <div className="navbar bg-base-100 shadow-sm container px-4 mx-auto">
       <div className="flex-1">
@@ -59,7 +72,12 @@ const Navbar = () => {
               <div>Bid Requests</div>
             </li>
             <li className="mt-2">
-              <button className="bg-gray-200 block text-center">Logout</button>
+              <button
+                onClick={handleLogOut}
+                className="bg-gray-200 block text-center"
+              >
+                Logout
+              </button>
             </li>
           </ul>
         </div>

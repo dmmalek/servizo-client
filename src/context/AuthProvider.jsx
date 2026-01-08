@@ -7,6 +7,7 @@ import {
   onAuthStateChanged,
   signInWithEmailAndPassword,
   signInWithPopup,
+  signOut,
   updateProfile,
 } from "firebase/auth";
 
@@ -38,6 +39,7 @@ const AuthProvider = ({ children }) => {
     });
   };
 
+  //  Observer
   useEffect(() => {
     const unsubcribed = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
@@ -48,6 +50,12 @@ const AuthProvider = ({ children }) => {
     };
   }, []);
 
+  // Log out user
+
+  const logOut = () => {
+    return signOut(auth);
+  };
+
   const authInfo = {
     user,
     setUser,
@@ -55,6 +63,7 @@ const AuthProvider = ({ children }) => {
     updateProfileUser,
     signInUser,
     signInWithGoogle,
+    logOut,
   };
 
   return (
