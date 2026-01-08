@@ -4,7 +4,8 @@ import useAuth from "../../hooks/useAuth";
 import toast from "react-hot-toast";
 
 const Navbar = () => {
-  const { logOut } = useAuth();
+  const { logOut, user } = useAuth();
+  console.log(user?.photoURL);
   const navigate = useNavigate();
   const handleLogOut = async () => {
     try {
@@ -30,57 +31,57 @@ const Navbar = () => {
             <NavLink to={"/"}>Home</NavLink>
           </li>
           <li>
-            <NavLink to={"/"}>All Services</NavLink>
-          </li>
-
-          <li>
-            <NavLink to={"/login"}>Log in</NavLink>
-          </li>
-          <li>
-            <NavLink to={"/register"}>Register</NavLink>
+            <NavLink to={"/services"}>All Services</NavLink>
           </li>
         </ul>
-
-        <div className="dropdown dropdown-end z-50">
-          <div
-            tabIndex={0}
-            role="button"
-            className="btn btn-ghost btn-circle avatar"
-          >
-            <div className="w-10 rounded-full" title="">
-              <img
-                referrerPolicy="no-referrer"
-                alt="User Profile Photo"
-                src=""
-              />
+        {user ? (
+          <div className="dropdown dropdown-end z-50">
+            <div
+              tabIndex={0}
+              role="button"
+              className="btn btn-ghost btn-circle avatar"
+            >
+              <div className="w-10 rounded-full" title={user?.displayName}>
+                <img
+                  referrerPolicy="no-referrer"
+                  alt="User Profile Photo"
+                  src={user?.photoURL}
+                />
+              </div>
             </div>
+            <ul
+              tabIndex={0}
+              className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
+            >
+              <li>
+                <div className="justify-between">Add Job</div>
+              </li>
+              <li>
+                <div>My Posted Jobs</div>
+              </li>
+              <li>
+                <div>My Bids</div>
+              </li>
+              <li>
+                <div>Bid Requests</div>
+              </li>
+              <li className="mt-2">
+                <button
+                  onClick={handleLogOut}
+                  className="bg-gray-200 block text-center"
+                >
+                  Logout
+                </button>
+              </li>
+            </ul>
           </div>
-          <ul
-            tabIndex={0}
-            className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
-          >
+        ) : (
+          <ul>
             <li>
-              <div className="justify-between">Add Job</div>
-            </li>
-            <li>
-              <div>My Posted Jobs</div>
-            </li>
-            <li>
-              <div>My Bids</div>
-            </li>
-            <li>
-              <div>Bid Requests</div>
-            </li>
-            <li className="mt-2">
-              <button
-                onClick={handleLogOut}
-                className="bg-gray-200 block text-center"
-              >
-                Logout
-              </button>
+              <NavLink to={"/login"}>Log in</NavLink>
             </li>
           </ul>
-        </div>
+        )}
       </div>
     </div>
   );
