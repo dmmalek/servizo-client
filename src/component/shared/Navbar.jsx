@@ -35,45 +35,58 @@ const Navbar = () => {
           </li>
         </ul>
         {user ? (
-          <div className="dropdown dropdown-end z-50">
-            <div
-              tabIndex={0}
-              role="button"
-              className="btn btn-ghost btn-circle avatar"
-            >
-              <div className="w-10 rounded-full" title={user?.displayName}>
-                <img
-                  referrerPolicy="no-referrer"
-                  alt="User Profile Photo"
-                  src={user?.photoURL}
-                />
+          <div className="flex justify-between items-center">
+            <div className="dropdown dropdown-end z-50">
+              <div tabIndex={0} role="button" className="btn btn-ghost ">
+                <div className="text-center">
+                  <ul>
+                    <li>
+                      <NavLink>DashBoard</NavLink>
+                    </li>
+                  </ul>
+                </div>
               </div>
+              <ul
+                tabIndex={0}
+                className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
+              >
+                <li>
+                  <Link to={"/add-service"} className="justify-between">
+                    Add Service
+                  </Link>
+                </li>
+                <li>
+                  <div>My Posted Jobs</div>
+                </li>
+                <li>
+                  <div>My Bids</div>
+                </li>
+                <li>
+                  <div>Bid Requests</div>
+                </li>
+              </ul>
             </div>
-            <ul
-              tabIndex={0}
-              className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
+            <div
+              className="flex justify-between items-center gap-2 flex-row-reverse"
+              title={user?.displayName}
             >
-              <li>
-                <div className="justify-between">Add Job</div>
-              </li>
-              <li>
-                <div>My Posted Jobs</div>
-              </li>
-              <li>
-                <div>My Bids</div>
-              </li>
-              <li>
-                <div>Bid Requests</div>
-              </li>
-              <li className="mt-2">
-                <button
-                  onClick={handleLogOut}
-                  className="bg-gray-200 block text-center"
-                >
-                  Logout
-                </button>
-              </li>
-            </ul>
+              <ul>
+                <li className="">
+                  <button
+                    onClick={handleLogOut}
+                    className="bg-gray-200 block text-center btn"
+                  >
+                    Logout
+                  </button>
+                </li>
+              </ul>
+              <img
+                className="rounded-full w-10"
+                referrerPolicy="no-referrer"
+                alt={user?.displayName}
+                src={user?.photoURL}
+              />
+            </div>
           </div>
         ) : (
           <ul>
