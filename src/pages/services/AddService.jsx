@@ -14,7 +14,7 @@ const AddService = () => {
     const data = { ...addService, providerEmail, providerName, providerImage };
     try {
       const res = await axios.post("http://localhost:5000/services", data);
-      console.log(res.data);
+      // console.log(res.data);
     } catch (error) {
       console.log(error);
     }

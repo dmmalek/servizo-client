@@ -16,7 +16,7 @@ const Login = () => {
     try {
       const { email, password } = signInData;
       const logInData = await signInUser(email, password);
-      console.log(logInData.user);
+      // console.log(logInData.user);
       navigate("/");
       toast.success("Log In successful");
     } catch (error) {

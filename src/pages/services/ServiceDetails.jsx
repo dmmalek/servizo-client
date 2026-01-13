@@ -6,14 +6,14 @@ const ServiceDetails = () => {
   const [service, setService] = useState(null);
   const params = useParams();
   const id = params?.id;
-  console.log(id);
+  // console.log(id);
   useEffect(() => {
     try {
       const fetchServices = async () => {
         const { data } = await axios.get(
           `http://localhost:5000/services/${id}`
         );
-        console.log(data);
+        // console.log(data);
         setService(data);
       };
       fetchServices();
@@ -71,13 +71,11 @@ const ServiceDetails = () => {
           <div className="bg-base-100 rounded-3xl shadow-xl p-8 flex flex-col justify-between">
             <div className="space-y-4">
               <h1 className="text-4xl font-bold leading-tight">
-                AC Repair Service
+                {service?.serviceName}
               </h1>
 
               <p className="text-gray-600 leading-relaxed">
-                AC repair, gas refill, and regular maintenance by experienced
-                technicians. We provide fast, affordable, and professional
-                service with guaranteed satisfaction.
+                {service?.description}
               </p>
 
               {/* Inline Provider */}
@@ -102,7 +100,9 @@ const ServiceDetails = () => {
             <div className="mt-8 space-y-4">
               <div className="flex items-center justify-between bg-base-200 rounded-2xl p-4">
                 <span className="text-gray-500 text-sm">Service Price</span>
-                <span className="text-2xl font-bold text-primary">৳ 1800</span>
+                <span className="text-2xl font-bold text-primary">
+                  ৳ {service?.price}
+                </span>
               </div>
 
               <button className="btn btn-primary btn-lg w-full rounded-2xl tracking-wide">
