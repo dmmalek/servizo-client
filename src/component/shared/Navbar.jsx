@@ -33,67 +33,54 @@ const Navbar = () => {
           <li>
             <NavLink to={"/services"}>All Services</NavLink>
           </li>
-        </ul>
-        {user ? (
-          <div className="flex justify-between items-center">
-            <div className="dropdown dropdown-end z-50">
-              <div tabIndex={0} role="button" className="btn btn-ghost ">
-                <div className="text-center">
-                  <ul>
-                    <li>
-                      <NavLink>DashBoard</NavLink>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-              <ul
-                tabIndex={0}
-                className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
-              >
-                <li>
-                  <Link to={"/add-service"} className="justify-between">
-                    Add Service
-                  </Link>
-                </li>
-                <li>
-                  <div>My Posted Jobs</div>
-                </li>
-                <li>
-                  <div>My Bids</div>
-                </li>
-                <li>
-                  <div>Bid Requests</div>
-                </li>
-              </ul>
-            </div>
-            <div
-              className="flex justify-between items-center gap-2 flex-row-reverse"
-              title={user?.displayName}
-            >
-              <ul>
-                <li className="">
-                  <button
-                    onClick={handleLogOut}
-                    className="bg-gray-200 block text-center btn"
-                  >
-                    Logout
-                  </button>
-                </li>
-              </ul>
-              <img
-                className="rounded-full w-10"
-                referrerPolicy="no-referrer"
-                alt={user?.displayName}
-                src={user?.photoURL}
-              />
-            </div>
-          </div>
-        ) : (
-          <ul>
+          {!user && (
             <li>
-              <NavLink to={"/login"}>Log in</NavLink>
+              <Link to="/login">Login</Link>
             </li>
-          </ul>
+          )}
+        </ul>
+        {user && (
+          <details className="dropdown">
+            <summary className="btn m-1">Dashboard</summary>
+            <ul className="menu dropdown-content bg-base-100 rounded-box z-[1] w-52 p-2 shadow">
+              <li>
+                <Link to="/dashboard/add-service">Add Service</Link>
+              </li>
+              <li>
+                <Link>Manage Service</Link>
+              </li>
+            </ul>
+          </details>
+        )}
+        {user && (
+          <div className="dropdown dropdown-end z-50">
+            <div
+              tabIndex={0}
+              role="button"
+              className="btn btn-ghost btn-circle avatar"
+            >
+              <div title={user?.displayName} className="w-10 rounded-full">
+                <img
+                  referrerPolicy="no-referrer"
+                  alt="User Profile Photo"
+                  src={user?.photoURL}
+                />
+              </div>
+            </div>
+            <ul
+              tabIndex={0}
+              className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
+            >
+              <li className="mt-2">
+                <button
+                  onClick={handleLogOut}
+                  className="bg-gray-200 block text-center"
+                >
+                  Logout
+                </button>
+              </li>
+            </ul>
+          </div>
         )}
       </div>
     </div>

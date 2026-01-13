@@ -33,12 +33,14 @@ const ServiceDetails = () => {
           <div className="card-body flex flex-col sm:flex-row items-center gap-6">
             <div className="avatar">
               <div className="w-24 rounded-full ring ring-primary ring-offset-base-100 ring-offset-4">
-                <img src="https://i.ibb.co/YT7nH0X/user.png" alt="Provider" />
+                <img src={service?.providerImage} alt={service?.providerName} />
               </div>
             </div>
 
             <div className="text-center sm:text-left">
-              <h3 className="text-2xl font-bold tracking-wide">Rahim Uddin</h3>
+              <h3 className="text-2xl font-bold tracking-wide">
+                {service?.providerName}
+              </h3>
               <p className="text-sm text-gray-500 mt-1">
                 Certified Service Provider
               </p>
@@ -55,13 +57,13 @@ const ServiceDetails = () => {
           {/* Image Section */}
           <div className="relative rounded-3xl overflow-hidden shadow-2xl">
             <img
-              src="https://i.ibb.co/Txws1qYH/AC-Repair-Service.jpg"
+              src={service?.imageUrl}
               alt="Service"
-              className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+              className="w-full h-96 object-cover hover:scale-105 transition-transform duration-500"
             />
 
             <div className="absolute top-4 left-4 bg-primary text-white px-5 py-2 rounded-full text-sm font-semibold shadow-lg">
-              ৳ 1800
+              ৳ {service?.price}
             </div>
           </div>
 
@@ -83,14 +85,14 @@ const ServiceDetails = () => {
                 <div className="avatar">
                   <div className="w-12 rounded-full">
                     <img
-                      src="https://i.ibb.co/YT7nH0X/user.png"
-                      alt="Provider"
+                      src={service?.providerImage}
+                      alt={service?.providerName}
                     />
                   </div>
                 </div>
 
                 <div>
-                  <p className="font-semibold">Rahim Uddin</p>
+                  <p className="font-semibold">{service?.providerName}</p>
                   <p className="text-xs text-gray-500">Expert Technician</p>
                 </div>
               </div>

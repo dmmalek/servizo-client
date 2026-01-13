@@ -8,7 +8,8 @@ const ServiceCard = ({ service }) => {
     price,
     serviceArea,
     description,
-    createdAt,
+    providerImage,
+    providerName,
   } = service;
   return (
     <div>
@@ -37,17 +38,17 @@ const ServiceCard = ({ service }) => {
             <span className="text-sm font-medium text-gray-500">
               {serviceArea}
             </span>
-
-            <span className="text-xs text-gray-400">{createdAt}</span>
           </div>
           <div className="flex justify-between items-center gap-4 mt-4">
             <div className="flex-1 flex items-center gap-1">
               <img
                 className="w-12 h-10 rounded-full"
-                src="https://i.ibb.co/gjpJHZ7/man.jpg"
-                alt="service provider name"
+                src={providerImage}
+                alt={providerName}
               />
-              <p className="text-gray-500 font-semibold text-base">Jhon doe</p>
+              <p className="text-gray-500 font-semibold text-base">
+                {providerName}
+              </p>
             </div>
             <div>
               {/* Button */}
