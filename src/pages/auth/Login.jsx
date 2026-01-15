@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import Lottie from "lottie-react";
 import logInImage from "../../assets/log_in.json";
@@ -7,7 +7,11 @@ import logo from "../../assets/logo.png";
 
 const Login = () => {
   const { signInUser, signInWithGoogle } = useAuth();
+  const location = useLocation();
   const navigate = useNavigate();
+
+  const from = location.state || "/";
+  console.log(from);
 
   const handleSignInUser = async (e) => {
     e.preventDefault();
@@ -15,9 +19,9 @@ const Login = () => {
     const signInData = Object.fromEntries(form.entries());
     try {
       const { email, password } = signInData;
-      const logInData = await signInUser(email, password);
-      // console.log(logInData.user);
-      navigate("/");
+      await signInUser(email, password);
+
+      navigate(from, { replace: true });
       toast.success("Log In successful");
     } catch (error) {
       console.log(error);
@@ -27,7 +31,7 @@ const Login = () => {
   const handleGooglelogin = async () => {
     try {
       await signInWithGoogle();
-      navigate("/");
+      navigate(from);
     } catch (error) {
       console.log(error);
     }

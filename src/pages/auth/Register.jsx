@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 import signUpImage from "../../assets/sign_up.json";
 import Lottie from "lottie-react";
@@ -7,7 +7,10 @@ import toast from "react-hot-toast";
 
 const Register = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const { createUser, user, setUser, updateProfileUser } = useAuth();
+  const from = location.state || "/";
+  console.log(location);
 
   const handleRegister = async (e) => {
     e.preventDefault();
@@ -21,7 +24,7 @@ const Register = () => {
       await updateProfileUser(name, photo);
       setUser({ ...user, displayName: name, photoUrl: photo });
       toast.success("User Created succesfully");
-      navigate("/");
+      navigate(from);
     } catch (error) {
       console.log(error);
     }
