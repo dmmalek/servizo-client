@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 
 const ServiceCard = ({ service }) => {
+  if (!service) return null;
   const {
     _id,
     imageUrl,
@@ -11,6 +12,7 @@ const ServiceCard = ({ service }) => {
     providerImage,
     providerName,
   } = service;
+
   return (
     <div>
       <div className="max-w-sm rounded-2xl overflow-hidden bg-white shadow-lg hover:shadow-2xl transition-shadow duration-300 border border-gray-100">
