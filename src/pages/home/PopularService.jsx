@@ -27,7 +27,7 @@ const PopularService = () => {
     });
   }, []);
   return (
-    <div className="space-y-8">
+    <div className="space-y-8 container mx-auto">
       <h1 className="text-2xl font-bold my-4">Popular Services</h1>
       <div className="grid grid-cols-1 lg:grid-cols-4 items-center gap-4">
         {popularServices.map((popularService, index) => (

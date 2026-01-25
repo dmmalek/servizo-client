@@ -5,7 +5,7 @@ import PopularService from "./PopularService";
 const Home = () => {
   return (
     <div>
-      <Banner />
+      {/* <Banner /> */}
       <PopularService />
       <HowWeWork />
     </div>
